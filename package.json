@@ -1,0 +1,57 @@
+{
+  "name": "sgdexpress",
+  "version": "0.0.1",
+  "description": "Integração SGDEXPRESS ",
+  "main": "index.js",
+  "author": "Junior Ferreira <jagfjunior@hotmail.com>",
+  "license": "Apache License 2.0",
+  "dependencies": {
+    "got": "^8.0.3",
+    "xml2js": "^0.4.19",
+    "xml2json": "^0.11.0"
+  },
+  "devDependencies": {
+    "ava": "0.25.0",
+    "coveralls": "3.0.0",
+    "nyc": "11.4.1",
+    "xo": "0.18.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Juniiorf/sgdexpress.git"
+  },
+  "keywords": [
+    "condutor",
+    "placa",
+    "veículos",
+    "detran"
+  ],
+  "scripts": {
+    "lint": "node ./node_modules/eslint/bin/eslint.js ./",
+    "lint:fix": "node ./node_modules/eslint/bin/eslint.js ./ --fix",
+    "clean": "rm -rf dist && mkdir dist",
+    "start": "if [ ! -d 'node_modules/' ]; then yarn install; fi && yarn run development",
+    "development": "NODE_ENV=development nodemon --exec babel-node index.js",
+    "stage": "NODE_ENV=stage nodemon --exec babel-node index.js",
+    "production": "NODE_ENV=production nodemon --exec babel-node index.js",
+    "build": "yarn run build:development",
+    "build:development": "yarn run clean && NODE_ENV=development babel . -d dist --ignore dist,node_modules --copy-files --source-maps=inline && cd dist && yarn install",
+    "build:stage": "yarn run clean && NODE_ENV=stage babel . -d dist --ignore dist,node_modules --copy-files --source-maps=inline && cd dist && yarn install",
+    "build:production": "yarn run clean && NODE_ENV=production babel . -d dist --ignore dist,node_modules --copy-files --source-maps=inline && cd dist && yarn install",
+    "compiled": "yarn run compiled:local",
+    "compiled:local": "NODE_ENV=development forever ./dist/index.js",
+    "compiled:development": "NODE_ENV=development forever ./dist/index.js",
+    "compiled:production": "NODE_ENV=production forever ./dist/index.js",
+    "test": "nyc ava --serial"
+  },
+  "ava": {
+    "files": [
+      "test/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "inherit": true,
+    "verbose": true
+  }
+}
