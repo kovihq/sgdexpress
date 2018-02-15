@@ -29,11 +29,11 @@ class Service {
       throw new Error(access.query.DESCRICAO);
     } catch (err) {
       let _err = {};
-      if (mapError.has(isValid.code)) {
+      if (await mapError.has(isValid.code)) {
         _err = mapError.get(isValid.code);
       }
-      const data = { ...{ status: 500, message: err.message }, ..._err };
-      return new DetranError(data.message, data.status);
+      const data = await { ...{ status: 500, message: err.message }, ..._err };
+      return new DetranError(data.message, data.status, data.name);
     }
   }
   //
