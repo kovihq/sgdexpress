@@ -1,6 +1,6 @@
 {
   "name": "sgdexpress",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Integração SGDEXPRESS ",
   "main": "index.js",
   "author": "Junior Ferreira <jagfjunior@hotmail.com>",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Juniiorf/sgdexpress.git"
+    "url": "git+https://github.com/kovihq/sgdexpress.git"
   },
   "keywords": [
     "condutor",
