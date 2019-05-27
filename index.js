@@ -74,4 +74,4 @@ class Service {
   }
 }
 
-export default (code, user, pass) => new Service(code, user, pass);
+export { Service };
