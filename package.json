@@ -1,6 +1,6 @@
 {
   "name": "sgdexpress",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Integração SGDEXPRESS ",
   "main": "index.js",
   "author": "Junior Ferreira <jagfjunior@hotmail.com>",
