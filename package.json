@@ -6,8 +6,7 @@
   "author": "Junior Ferreira <jagfjunior@hotmail.com>",
   "license": "Apache License 2.0",
   "dependencies": {
-    "got": "^9.6.0",
-    "xml2js": "^0.4.19",
+    "axios": "^0.18.0",
     "xml2json": "^0.11.2"
   },
   "devDependencies": {

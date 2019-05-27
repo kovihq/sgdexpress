@@ -1,5 +1,5 @@
-import { parseString } from "xml2js";
-import got from "got";
+import Parser from "xml2json";
+import Axios from "axios";
 import {
   xmlConductor,
   xmlVehicle,
@@ -17,20 +17,26 @@ class Service {
     this.code = code;
     this.user = user;
     this.pass = pass;
-    this.headers = {
-      "Content-Type": "text/xml"
-    };
   }
 
   async vehicle(plate) {
     let isValid;
     try {
       const body = xmlVehicle(this.code, this.user, this.pass, plate);
-      const res = await got.post(url.vehicle, { headers: this.headers, body });
-      const resParse = await this._parseString(res.body, {
-        explicitArray: false,
+      const res = await Axios({
+        method: "post",
+        url: url.vehicle,
+        data: body,
+        headers: {
+          "Content-Type": "text/xml"
+        }
+      });
+
+      const resParse = Parser.toJson(res.data, {
+        object: true,
         trim: true
       });
+      // return resParse;
       const access = clean(resParse["soap:Envelope"]["soap:Body"]);
       if (!access) return false;
       isValid = valid(access.query);
@@ -45,17 +51,21 @@ class Service {
       return new DetranError(data.message, data.status, data.name);
     }
   }
-  //
+
   async conductor(cnh, cpf) {
     let isValid;
     try {
       const body = xmlConductor(this.code, this.user, this.pass, cpf, cnh);
-      const res = await got.post(url.conductor, {
-        headers: this.headers,
-        body
+      const res = await Axios({
+        method: "post",
+        url: url.conductor,
+        data: body,
+        headers: {
+          "Content-Type": "text/xml"
+        }
       });
-      const resParse = await this._parseString(res.body, {
-        explicitArray: false,
+      const resParse = Parser.toJson(res.data, {
+        object: true,
         trim: true
       });
       const access = cleanCnh(resParse["soap:Envelope"]["soap:Body"]);
@@ -74,4 +84,4 @@ class Service {
   }
 }
 
-export { Service };
+export default Service;
