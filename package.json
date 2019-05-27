@@ -6,15 +6,15 @@
   "author": "Junior Ferreira <jagfjunior@hotmail.com>",
   "license": "Apache License 2.0",
   "dependencies": {
-    "got": "^8.0.3",
+    "got": "^9.6.0",
     "xml2js": "^0.4.19",
-    "xml2json": "^0.11.0"
+    "xml2json": "^0.11.2"
   },
   "devDependencies": {
-    "ava": "0.25.0",
-    "coveralls": "3.0.0",
-    "nyc": "11.4.1",
-    "xo": "0.18.2"
+    "ava": "1.4.1",
+    "coveralls": "3.0.3",
+    "nyc": "14.1.1",
+    "xo": "0.24.0"
   },
   "repository": {
     "type": "git",
